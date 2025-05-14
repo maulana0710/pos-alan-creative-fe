@@ -15,7 +15,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       data-footer="simple"
     >
       <CompactNav />
-      <div className="mt-20">
+      <div className="mt-20 bg-gray-300 min-h-screen">
         {children}
         <PageFooter />
       </div>

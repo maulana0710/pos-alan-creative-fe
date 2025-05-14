@@ -2,7 +2,7 @@ import React from "react";
 
 const PageFooter = () => {
   return (
-    <div className="hk-footer">
+    <div className="py-10">
       <div className="footer">
         <div>
           <div>

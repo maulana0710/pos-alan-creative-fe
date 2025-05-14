@@ -28,22 +28,22 @@ export type TNavMenuItem = {
 
 export const NavMenu: TNavMenu = [
   {
-    group: "transaksi",
+    group: "food",
     contents: [
       {
-        name: "transaksi",
-        path: "/transaksi",
+        name: "food",
+        path: "/food",
         badge: "",
         childrens: [],
       },
     ],
   },
   {
-    group: "food",
+    group: "transaksi",
     contents: [
       {
-        name: "food",
-        path: "/food",
+        name: "transaksi",
+        path: "/transaksi",
         badge: "",
         childrens: [],
       },

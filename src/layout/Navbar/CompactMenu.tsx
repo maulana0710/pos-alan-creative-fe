@@ -77,7 +77,7 @@ const CompactMenu: React.FC<TCompactMenuProps> = () => {
     <div className="h-full w-full">
       <NavHeader />
       <div className="overflow-y-auto h-full">
-        <div className="ms-16 flex gap-4">
+        <div className="ms-30 flex gap-4">
           {authorizedNavMenu?.map((item, index) => (
             <React.Fragment key={index}>
               {item.contents.map((menus, ind) => {
@@ -85,7 +85,7 @@ const CompactMenu: React.FC<TCompactMenuProps> = () => {
                 return (
                   <div
                     key={ind}
-                    className={`${isActive ? "border-b-4 border-blue-500 text-blue-500" : ""}`}
+                    className={`${isActive ? "border-b-4 opacity-70 border-blue-500 text-blue-500" : ""}`}
                   >
                     <Link
                       href={menus.path}
