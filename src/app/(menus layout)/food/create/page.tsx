@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 
-import ProductPageBody from "./components/main/ProductPageBody";
+import CreateProductPageBody from "./components/main/CreateProductPageBody";
 
 const ProductPage: React.FC = () => {
   return (
     <>
       <div className="mx-16 pt-20">
-        <ProductPageBody />
+        <CreateProductPageBody />
       </div>
     </>
   );

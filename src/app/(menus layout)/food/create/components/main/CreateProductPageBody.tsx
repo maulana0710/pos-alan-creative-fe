@@ -8,7 +8,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import ImageUploadDropzone from "../components/UploadImage";
 
-const ProductPageBody = () => {
+const CreateProductPageBody = () => {
   const [requestResponse, setRequestResponse] = useState<{
     message: string | any;
     isError: boolean;
@@ -109,4 +109,4 @@ const ProductPageBody = () => {
   );
 };
 
-export default ProductPageBody;
+export default CreateProductPageBody;
