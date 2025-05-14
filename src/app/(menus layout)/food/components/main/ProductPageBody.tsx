@@ -33,7 +33,7 @@ const ProductPageBody: React.FC<TProductPageBodyProps> = () => {
   return (
     <div className="bg-white ">
       <div className="pt-6 ps-6">
-        <Link href='/food/create' className="bg-blue-500 text-white p-2 cursor-pointer">+ Tambah Menu</Link>
+        <Link href='/food/create' className="opacity-70 bg-blue-500 text-white p-2 cursor-pointer">+ Tambah Menu</Link>
       </div>
       {isLoading && (
         <div className="flex justify-center items-center py-8">
