@@ -10,11 +10,13 @@ import { TCartItem, TStoreOrderReqBody } from "@/types/order";
 import { useStoreOrder } from "@/service/cashier-system/mutations/order";
 import { toast } from "sonner";
 import Payment from "./modal/Payment";
+import { useGenerateProductionLabel } from "@/service/cashier-system/mutations/production";
 
 export default function Transaction() {
   const { data, isLoading, isError } = useGetAllProducts();
   const products = data?.data;
-
+  const [requestResponse, setRequestResponse] = useState<string>();
+  const generateProductionLabelMutation = useGenerateProductionLabel();
   const [cart, setCart] = useState<TCartItem[]>([]);
 
   const handleAddToCart = (product: TProduct) => {
@@ -34,6 +36,31 @@ export default function Transaction() {
     setCart([]);
   };
 
+  const handlePrintLabel = async () => {    
+    if (!requestResponse) {
+      toast.error("Save bill FIRST.", {
+        duration: 1500,
+      });
+      return;
+    }
+    try {
+      const generate = await generateProductionLabelMutation.mutateAsync(requestResponse);
+      if (generate.success === true) {
+        const filePath = generate.data.file_path;
+        toast.success("Label has been generated", {
+          duration: 1500,
+        });
+        window.open(filePath, "_blank");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Save bill FIRST.", {
+        duration: 1500,
+      });
+    }
+  };
+
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const storeOrderMutation = useStoreOrder();
   const [totalPayment, setTotalPayment] = useState<number>(0);
@@ -49,7 +76,7 @@ export default function Transaction() {
     const orderPayload: TStoreOrderReqBody = {
       total_payment: totalPayment,
       grand_total: grandTotal,
-      change: totalPayment == 0 ? change : calculatedChange ,
+      change: totalPayment == 0 ? change : calculatedChange,
       order_package: [
         {
           products: cart.map((item) => ({
@@ -62,6 +89,7 @@ export default function Transaction() {
 
     try {
       const storeOrder = await storeOrderMutation.mutateAsync(orderPayload);
+      setRequestResponse(storeOrder.data.item.orderno)
       if (storeOrder.success === true) {
         toast.success("Order successfully added", { duration: 1500 });
       }
@@ -170,7 +198,10 @@ export default function Transaction() {
             >
               Save Bill
             </button>
-            <button className="cursor-pointer flex-1 bg-green-400 text-white py-2 rounded hover:bg-green-500">
+            <button
+              onClick={handlePrintLabel}
+              className="cursor-pointer flex-1 bg-green-400 text-white py-2 rounded hover:bg-green-500"
+            >
               Print Bill
             </button>
           </div>
