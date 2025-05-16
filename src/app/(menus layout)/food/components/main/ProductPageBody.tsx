@@ -10,8 +10,8 @@ import Link from "next/link";
 
 
 const ProductPageBody = () => {
-  const { data, isLoading, isError } = useGetProducts();
   const [pagination, setPagination] = useState({ page: 1 });
+  const { data, isLoading, isError } = useGetProducts({pagination});
   const products = data?.data;
 
   const handlePageChange = (newPage: number) => {

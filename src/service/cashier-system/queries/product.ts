@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProducts, getProducts } from "../api/product";
+import { TRequestParams } from "@/types";
 
-export function useGetProducts() {
+export function useGetProducts({ pagination }: TRequestParams) {
   return useQuery({
-    queryKey: ["Get products"],
-    queryFn: getProducts,
+    queryKey: ["Get products", pagination],
+    queryFn: () => getProducts({ pagination }),
   });
 }
 

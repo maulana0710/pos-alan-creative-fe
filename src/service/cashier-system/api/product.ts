@@ -1,11 +1,19 @@
+import { TRequestParams } from "@/types";
 import { authorizedAxiosInstance } from ".";
 import * as TProduct from "@/types/product";
 
-export const getProducts = async () => {
-  const response = await authorizedAxiosInstance.get("/app/master-data/product");
+export const getProducts = async ({ pagination }: TRequestParams) => {
+  const filteringParams = new URLSearchParams();
+  const paginationParams = new URLSearchParams();
+
+  if (pagination?.page) paginationParams.append("page", pagination.page.toString());
+  if (pagination?.pageSize) paginationParams.append("per_page", pagination.pageSize.toString());
+
+  const response = await authorizedAxiosInstance.get(
+    `/app/master-data/product?${filteringParams.toString()}&${paginationParams.toString()}`
+  );
   return response.data as TProduct.TGetProductsResBody;
 };
-
 export const getAllProducts = async () => {
   const response = await authorizedAxiosInstance.get("/app/master-data/all-products");
   return response.data as TProduct.TGetAllProductsResBody;

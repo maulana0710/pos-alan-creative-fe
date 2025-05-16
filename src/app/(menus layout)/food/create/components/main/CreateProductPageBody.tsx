@@ -33,7 +33,6 @@ const CreateProductPageBody = () => {
       formData.append("name", data.name);
       formData.append("price", data.price);
 
-      // Image harus berupa File, pastikan ini valid
       if (data.image instanceof File) {
         formData.append("image", data.image);
       }
