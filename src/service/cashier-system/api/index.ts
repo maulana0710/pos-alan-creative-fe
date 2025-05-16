@@ -3,14 +3,14 @@ import axios from "axios";
 
 const getBaseURL = () => {
   const URL = process.env.NEXT_PUBLIC_SUBDOMAIN;
-  return `http://${URL}/api/v1/`;
-  // return `https://${URL}/api/v1/`;
+  // return `http://${URL}/api/v1/`;
+  return `https://${URL}/api/v1/`;
 };
 
 const getAltBaseURL = () => {
   const URL_ALT = process.env.NEXT_PUBLIC_SUBDOMAIN;
-  return `http://${URL_ALT}/api/v1/`;
-  // return `https://${URL_ALT}/api/v1/`;
+  // return `http://${URL_ALT}/api/v1/`;
+  return `https://${URL_ALT}/api/v1/`;
 };
 
 const BASE_URL = getBaseURL();
