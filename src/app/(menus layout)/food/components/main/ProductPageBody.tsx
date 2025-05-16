@@ -2,20 +2,14 @@
 
 import React, { useState } from "react";
 import { useGetProducts } from "@/service/cashier-system/queries/product";
-import { TProduct } from "@/types/product";
 import Error from "@/components/shared/http-response/Error";
 import Null from "@/components/shared/http-response/Null";
 import Image from "next/image";
 import { rupiah } from "@/utils/currency";
 import Link from "next/link";
 
-type TProductPageBodyProps = {
-  action: {
-    toggleEditProductModal: (item?: TProduct) => void;
-  };
-};
 
-const ProductPageBody: React.FC<TProductPageBodyProps> = () => {
+const ProductPageBody = () => {
   const { data, isLoading, isError } = useGetProducts();
   const [pagination, setPagination] = useState({ page: 1 });
   const products = data?.data;
@@ -63,7 +57,7 @@ const ProductPageBody: React.FC<TProductPageBodyProps> = () => {
                 <tbody>
                   {products.data.map((value, index) => (
                     <React.Fragment key={value.id}>
-                      <tr className="border-b last:border-none odd:bg-white even:bg-gray-200">
+                      <tr className="odd:bg-white even:bg-gray-100">
                         <td className="p-4">{index + 1}</td>
                         <td className="p-4">{value.name}</td>
                         <td className="p-4">
@@ -71,7 +65,7 @@ const ProductPageBody: React.FC<TProductPageBodyProps> = () => {
                             <Image
                               src={value.image}
                               alt={value.name}
-                              className="w-40 h-40 object-cover rounded"
+                              className="w-32 h-32 object-cover rounded"
                               width={100}
                               height={100}
                             />

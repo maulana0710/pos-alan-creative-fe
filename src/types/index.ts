@@ -1,4 +1,3 @@
-import { TStatusMethod } from "./order";
 
 export type TBaseResponse = {
   success: boolean;
@@ -37,7 +36,7 @@ export type TErrorResponse = {
 };
 
 export type TRequestParams = {
-  filtering?: { search?: string; status_method?: TStatusMethod };
+  filtering?: { search?: string; status_method?: string };
   sorting?: { sort_column?: string; sort_order?: string };
   pagination?: { page?: number; per_page?: number; pageSize?: number };
   printed?: { printed: number | string | null };

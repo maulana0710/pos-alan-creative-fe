@@ -1,7 +1,6 @@
 import { TBaseResponse } from "./index";
 import { TPagination } from "./pagination";
 
-
 export type TProduct = {
   id: number;
   uuid: string;
@@ -17,6 +16,10 @@ export type TGetProductsResBody = TBaseResponse & {
   data: TPagination & {
     data: TProduct[];
   };
+};
+
+export type TGetAllProductsResBody = TBaseResponse & {
+  data: { items: TProduct[] };
 };
 
 export type TStoreProductReqBody = {

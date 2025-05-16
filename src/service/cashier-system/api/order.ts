@@ -27,12 +27,8 @@ export const getOrder = async (uuid: string) => {
   return response.data as TGetOrderResBody;
 };
 
-export const storeFirstOrder = async (data: TStoreOrderReqBody) => {
-  const response = await authorizedAxiosInstance.post("/app/order/first-order", data);
+export const storeOrder = async (data: TStoreOrderReqBody) => {
+  const response = await authorizedAxiosInstance.post("/app/order/", data);
   return response.data;
 };
 
-export const storeRepeatOrder = async (data: TStoreOrderReqBody) => {
-  const response = await authorizedAxiosInstance.post("/app/order/repeat-order", data);
-  return response.data;
-};

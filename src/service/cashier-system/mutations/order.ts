@@ -1,22 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { TStoreOrderReqBody } from "@/types/order";
-import { storeFirstOrder, storeRepeatOrder } from "../api/order";
+import { storeOrder } from "../api/order";
 
-export const useStoreFirstOrder = () => {
+export const useStoreOrder = () => {
   return useMutation({
-    mutationKey: ["Store first order"],
-    mutationFn: (data: TStoreOrderReqBody) => storeFirstOrder(data),
-    onMutate: () => {},
-    onError: () => {},
-    onSuccess: () => {},
-    onSettled: () => {},
-  });
-};
-
-export const useStoreRepeatOrder = () => {
-  return useMutation({
-    mutationKey: ["Store repeat order"],
-    mutationFn: (data: TStoreOrderReqBody) => storeRepeatOrder(data),
+    mutationKey: ["Store order"],
+    mutationFn: (data: TStoreOrderReqBody) => storeOrder(data),
     onMutate: () => {},
     onError: () => {},
     onSuccess: () => {},
